@@ -2,6 +2,7 @@
 
 import android.os.Bundle
 import android.provider.CalendarContract.Colors
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -20,7 +21,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.FilledTonalButton
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -47,6 +51,21 @@ class MainActivity : ComponentActivity() {
             val description = "The Kaaba - Holy Mosque Makkah"
             val title = "Beitoul AlHaram"
             ImageCard(painter =painter , contentDescription =description , title = title)
+            //ColumnText()
+            Column(
+                horizontalAlignment = Alignment.End
+            ) {
+                FilledButton(onClick = {
+                    /*TODO*/
+                    Log.d("TAG", "onCreate: Clicked")
+                })
+
+                ElevatedButton(onClick = {
+                    Log.d("TAG", "onCreate: Clicked")
+                }) {
+                    Text(text = "Salam Button")
+                }
+            }
         }
     }
 }
@@ -57,6 +76,13 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
         text = "Salam Aletkoum $name!",
         modifier = modifier
     )
+}
+
+@Composable
+fun FilledButton(onClick: () -> Unit){
+  FilledTonalButton(onClick = { onClick() }) {
+      Text(text = "Click me")
+  }
 }
 
 @Composable fun ColumnText(){
@@ -115,7 +141,8 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                 Image(
                     painter = painter,
                     contentDescription = contentDescription,
-                    contentScale = ContentScale.Crop
+                    contentScale = ContentScale.Crop,
+
                 )
              Box(
                  modifier = Modifier
